@@ -1,0 +1,70 @@
+F;AS;AUTOR;Titulo;Editorial;Año
+;EST;Abad y Vargas;Estadistica (Vols 1 y 2);Jufer;1991
+;LOG;J Cuena;Lógica Informática;Alianza Editorial;
+FC;MD;Abellanas y Lodares;Analisis de Algoritmos. Teoria de Grafos;Ra-Ma;1990
+O;PRO;Aho A. Hopcroft;Estructura de datos y algoritmos;Addison Wesley;1987
+;FIS;Alonso y Finn;Fisica;Addison Wesley;1995
+FC;ETC;Angulo, Jose Mª;Estructura de Computadores;Paraninfo;
+;PRO;Antonakos, J.;Programación estructurada en C;Prentice Hall;2000
+;ALG;Anzola, Caruncho y Perez Canales;Problemas de Algebra;;1981
+O;AM;Tom Apostol;Calculus;Reverté;1976
+FC;LOG;Arenas Alegría;Lógica formal para informáticos;Diaz de Santos;
+;MD;Biggs NL;Matemática Discreta;Vicens Vives;1994
+;AM;Bradley y Smith;Calculo de una variable;Prentice Hall;1998
+;AM;Bradley y Smith;Calculo de varias variables;Prentice Hall;1998
+;FIS;Burbano de Ercilla, Burnano y Muñoz;Problemas de Fisica General;Mira;
+;AM;Burden y Faires;Análisi Numérico;Iberoamérica;1998
+;ALG;de Burgos;Algebra Lineal;McGraw Hill;1993
+FC;AM;de Burgos;Calculo Infinitesimal de una variable;McGraw Hill;1994
+;AM;de Burgos;Calculo Infinitesimal de varias variables;McGraw Hill;1995
+;MD;Bujalance y otros;Elementos de Matemática Discreta;Sanz y Torres;1997
+;MD;Bujalance y otros;Problemas de Matemática Discreta;Sanz y Torres;1997
+;EST;Canavos GC;Probabilidad y estadistica-Aplicaciones y Metodos;McGraw Hill;
+;LOG;Chang CL y Lee;Symbolic Logic and Mechanical Theorem Proving;Academic;
+;LOG;Gallier JH;Logic for Computer Science;Herper & Row;1986
+;LOG;Kleene SC;Introduccion a las matematicas;Tecnos;1974
+O;LOG;Kowalski K;Logic for Problem Solving;North Holland;1979
+;LOG;Kowalski K;Logica, Programacion e IA;Diaz de Santos;1980
+;LOG;Quine WV;Methods of Logic;Henry Holt;1950
+;LOG;Robinson JA;Logic form and function;Edinburgh;1979
+FC;PRO;Dale N , Weems C;Pascal;McGraw Hill;1988
+O;PRO;Deitel y Deitel;Como Programar en C++;Prentice Hall;1998
+FI;PRO;Deitel y Deitel;Como Programar en Java;Prentice Hall;2000
+;AM;Demidovich B;5000 problemas de Análisis Infor.;Reverté;1978
+;PRO;Dijkstra y Feigen;A method of programming;Addison Wesley;
+;TCI;Edminister JA;Circuitos electricos;McGraw Hill;
+O;AM;Tebar;Problemas de matemáticas;Tebar Flores;
+;ETC;Floyd;Fundamentos de Sistemas Digitales;Prentice Hall;
+O;FIS;Gettys,Keller,Skove;Fisica Clasica y Moderna;McGraw Hill;1191
+;FIS;Gonzalez FA;La Fisica en Problemas;Tebar Flores;2000
+;MD;Grimaldi RP;Matemáticas Discretas y Combinatoria;Addison Wesley;
+;ALG;Grossman SI;Algebra Lineal;McGraw Hill;1996
+;MD;Hopcroft J,Motwanni,Ullman;Introduccion a los Automatas;Addison Wesley;
+;ETC;Intel;80386 Guida de Programador Intel;Anaya;1989
+;TCI;Irwin JD;Análisis básico de circuitos en ingenieria;Prentice Hall;
+;TCI;Johnson DE;Análisis básico de circuitos electricos;Prentice Hall;
+FC;PRO;Joyanes L;Fundamentos de Programación;McGraw Hill;1996
+;PRO;Kernigan y Pike;La Practica de la Programacion;Addison Wesley;
+FC;PRO;Kernigan y Ritchie;Programacion en C;Prentice Hall;1988
+;ALG;Knuth DE;Algoritmos básicos;Reverte;1980
+;MD;Kolman B, Busby R;Estructura de Matemáticas Discretas;Prentice Hall;
+FI;ALG;Lipschutz S;Algebra Lineal;McGraw Hill;1992
+FI;EST;Lipschutz S;Introduccion a la probabilidad;McGraw Hill;
+FI;MD;Lipschutz S;Matematica Discreta. Teoria y Problemas;McGraw Hill;1990
+;AM;Madsen J,Tromba A;Calculo vectorial;Addison Wesley;1998
+;TCI;Malvino;Principios de electronica;McGraw Hill;2000
+;ETC;de Miguel, Pedro;Fundamentos de Computadores;Paraninfo;
+;TCI;Millman y grabel;Microelectronica;Hispano Europea;1991
+;ETC;Norton, Peter;Introduccion a la computacion;McGraw Hill;
+;ETC;Patterson D, Henessy J;Estructura y diseño de computadores;Reverté;
+;EST;Peña D;Estadistica.Modelos y métodos;Alianza;1991
+O;PRO;Peña Mari;Diseño de Programas Formalismo y Abstraccion;Prentice Hall;
+;ETC;Rodriguez,Rosello;8088 Programacion ensamblador;Anaya;
+;FIS;Sears FW, Zemansky MW;Fisica;Addison Wesley;1999
+;FIS;Serway RD;Fisica I y II;McGraw Hill;1999
+;ALG;Simmons F;Ecuaciones diferenciales con aplicaciones y rutas;GLAGSA;
+FC;FIS;Tipler PA;Fisica I y II;Reverte;1994
+;ETC;Stallings W;Organizacion y Arquitectura de Computadores;Prentice Hall;
+O;PRO;Stroustroup B;Programacion en C++;Addison Wesley;1994
+;EST;Walpole Myers Myers;Probabilidad y Estadistica para Ingenieros;Prentice Hall;
+;PRO;Wlverton;El libro de MSDOS;Anaya;1991
