@@ -1,16 +1,18 @@
-package com.chusnaval.biblos; 
+package com.chusnaval.biblos.model; 
 
 import javax.persistence.Entity; 
 import javax.persistence.GeneratedValue; 
 import javax.persistence.Id; 
+import javax.persistence.Table;
 
 @Entity
+@Table(name="Books")
 public final class Book {
 
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String name;
+	private String title;
 	private String originalTitle;
 	
 	public Long getId() {
@@ -19,11 +21,11 @@ public final class Book {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String name) {
+		this.title = name;
 	}
 	public String getOriginalTitle() {
 		return originalTitle;
@@ -33,7 +35,7 @@ public final class Book {
 	}
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", name=" + name + ", originalTitle="
+		return "Book [id=" + id + ", title=" + title + ", originalTitle="
 				+ originalTitle + "]";
 	}
 	

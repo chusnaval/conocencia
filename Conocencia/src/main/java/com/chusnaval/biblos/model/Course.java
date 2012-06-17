@@ -1,11 +1,11 @@
-package com.chusnaval.biblos;
+package com.chusnaval.biblos.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public final class Publisher {
+public final class Course {
 
 	@Id
 	@GeneratedValue
