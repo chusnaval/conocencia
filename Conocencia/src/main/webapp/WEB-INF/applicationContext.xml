@@ -13,9 +13,6 @@ http://www.springframework.org/schema/context
 
 http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<!-- Beans Declaration -->
-	<bean id="Book" class="com.chusnaval.biblos.model.Book" />
-
 	<!-- Book Service Declaration -->
 	<bean id="BookService" class="com.chusnaval.biblos.service.BookService">
 		<property name="bookDAO" ref="BookDAO" />
@@ -45,6 +42,13 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="annotatedClasses">
 			<list>
 				<value>com.chusnaval.biblos.model.Book</value>
+				<value>com.chusnaval.biblos.model.Writer</value>
+				<value>com.chusnaval.biblos.model.Country</value>
+				<value>com.chusnaval.biblos.model.Course</value>
+				<value>com.chusnaval.biblos.model.Publisher</value>
+				<value>com.chusnaval.biblos.model.Edition</value>
+				<value>com.chusnaval.biblos.model.University</value>
+				<value>com.chusnaval.biblos.model.Recommendation</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -54,6 +58,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 			</props>
 		</property>
 	</bean>
+
 
 	<!-- Enable the configuration of transactional behavior based on annotations -->
 	<tx:annotation-driven transaction-manager="txManager" />

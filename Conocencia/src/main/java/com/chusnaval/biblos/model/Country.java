@@ -1,18 +1,23 @@
 package com.chusnaval.biblos.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "countries")
 public final class Country {
 
-	@Id
-	@GeneratedValue
+
 	private Long id;
 	private String name;
 	private String code;
 
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
 	public Long getId() {
 		return id;
 	}
@@ -21,6 +26,7 @@ public final class Country {
 		this.id = id;
 	}
 
+	@Column(name = "name")
 	public String getName() {
 		return name;
 	}
@@ -29,6 +35,7 @@ public final class Country {
 		this.name = name;
 	}
 
+	@Column(name = "code")
 	public String getCode() {
 		return code;
 	}

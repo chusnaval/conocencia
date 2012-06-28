@@ -3,9 +3,11 @@ package com.chusnaval.biblos.dao;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import com.chusnaval.biblos.model.Book;
 
+@Repository(value = "BookDAO")
 public class BookDAO implements IBookDAO {
 
 	private SessionFactory sessionFactory;

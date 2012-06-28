@@ -69,3 +69,17 @@ CREATE TABLE `universitycourses` (
   CONSTRAINT `universitycourses_ibfk_2` FOREIGN KEY (`idCourse`) REFERENCES `courses` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `universityrecommendations` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idEdition` bigint(20) NOT NULL,
+  `idUniversity` bigint(20) NOT NULL,
+  `idCourse` bigint(20) DEFAULT NULL,
+  `text` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `universityrecommendations_ibfk_1` (`idEdition`),
+  KEY `universityrecommendations_ibfk_2` (`idUniversity`,`idCourse`),
+  CONSTRAINT `universityrecommendations_ibfk_1` FOREIGN KEY (`idEdition`) REFERENCES `editions` (`id`),
+  CONSTRAINT `universityrecommendations_ibfk_2` FOREIGN KEY (`idUniversity`, `idCourse`) REFERENCES `universitycourses` (`idUniversity`, `idCourse`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+

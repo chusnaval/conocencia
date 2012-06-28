@@ -16,12 +16,20 @@
         </td>
        </tr>
        <tr>
-        <td><h:outputLabel for="name" value="Title : " /></td>
-        <td><p:inputText id="name" value="#{bookMB.title}">
+        <td><h:outputLabel for="title" value="Title : " /></td>
+        <td><p:inputText id="title" value="#{bookMB.title}">
           <f:validateLength minimum="1" />
           <p:ajax event="blur" update="titleMsg" />
          </p:inputText>
-         <p:message id="titleMsg" for="name" display="icon"/>
+         <p:message id="titleMsg" for="title" display="icon"/>
+        </td>
+       </tr>
+       <tr>
+        <td><h:outputLabel for="originalTitle" value="Original Title : " /></td>
+        <td><p:inputText id="originalTitle" value="#{bookMB.originalTitle}">
+         <p:ajax event="blur" update="titleMsg01" />
+         </p:inputText>
+         <p:message id="titleMsg01" for="originalTitle" display="icon"/>
         </td>
        </tr>
           <tr>

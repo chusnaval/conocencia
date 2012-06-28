@@ -1,17 +1,21 @@
 package com.chusnaval.biblos.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "courses")
 public final class Course {
 
-	@Id
-	@GeneratedValue
 	private Long id;
 	private String name;
 
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
 	public Long getId() {
 		return id;
 	}
@@ -20,6 +24,7 @@ public final class Course {
 		this.id = id;
 	}
 
+	@Column(name = "name")
 	public String getName() {
 		return name;
 	}

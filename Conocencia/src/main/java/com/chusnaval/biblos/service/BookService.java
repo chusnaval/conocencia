@@ -2,12 +2,14 @@ package com.chusnaval.biblos.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.chusnaval.biblos.dao.IBookDAO;
 import com.chusnaval.biblos.model.Book;
 
 @Transactional(readOnly = true)
+@Service(value="BookService")
 public class BookService implements IBookService {
 
 	IBookDAO bookDAO;

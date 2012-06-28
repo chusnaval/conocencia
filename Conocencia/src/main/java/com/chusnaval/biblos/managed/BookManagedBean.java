@@ -1,6 +1,7 @@
 package com.chusnaval.biblos.managed;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -25,6 +26,7 @@ public class BookManagedBean implements Serializable {
 	
 	private Long id;
 	private String title;
+	private String originalTitle;
 	
 	/**
 	  * Add User
@@ -36,6 +38,7 @@ public class BookManagedBean implements Serializable {
 	   Book book = new Book();
 	   book.setId(getId());
 	   book.setTitle(getTitle());
+	   book.setOriginalTitle(getOriginalTitle());
 	   getBookService().addBook(book);
 	   return SUCCESS;
 	  } catch (DataAccessException e) {
@@ -52,10 +55,16 @@ public class BookManagedBean implements Serializable {
 	 public void reset() {
 	  this.setId((long) 0);
 	  this.setTitle("");
+	  this.setOriginalTitle("");
 	 }
 
 	public List<Book> getBooks() {
-		return getBookService().getBooks();
+		List<Book> books= new ArrayList<Book>();
+		books = bookService.getBooks();
+		for(Book actual: books){
+			actual.getWriters();
+		}
+		return books;
 	}
 
 	public void setBooks(List<Book> books) {
@@ -86,6 +95,12 @@ public class BookManagedBean implements Serializable {
 		this.bookService = bookService;
 	}
 
+	public String getOriginalTitle() {
+		return originalTitle;
+	}
 
-	
+	public void setOriginalTitle(String originalTitle) {
+		this.originalTitle = originalTitle;
+	}
+
 }
