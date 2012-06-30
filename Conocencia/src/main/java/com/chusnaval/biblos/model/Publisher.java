@@ -1,9 +1,13 @@
 package com.chusnaval.biblos.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,6 +16,7 @@ public final class Publisher {
 
 	private Long id;
 	private String name;
+	private List<Edition> editions;
 
 	@Id
 	@GeneratedValue
@@ -38,4 +43,14 @@ public final class Publisher {
 		return "Book [id=" + id + ", name=" + name + "]";
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publisher")
+	public List<Edition> getEditions() {
+		return editions;
+	}
+
+	public void setEditions(List<Edition> editions) {
+		this.editions = editions;
+	}
+
+	
 }

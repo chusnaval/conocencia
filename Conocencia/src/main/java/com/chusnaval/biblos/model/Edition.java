@@ -1,12 +1,19 @@
 package com.chusnaval.biblos.model;
 
-import javax.persistence.CascadeType;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "editions")
@@ -17,6 +24,8 @@ public class Edition {
 	private int year;
 	private boolean buyed = false;
 	private Publisher publisher;
+	private Book book;
+	private List<Recommendation> recommendations;
 
 	@Id
 	@GeneratedValue
@@ -56,7 +65,8 @@ public class Edition {
 		this.buyed = buyed;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idPublisher", nullable = false)
 	public Publisher getPublisher() {
 		return publisher;
 	}
@@ -65,4 +75,25 @@ public class Edition {
 		this.publisher = publisher;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idBook", nullable = false)
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+	@OneToMany(mappedBy = "edition")
+	@Fetch(FetchMode.JOIN)
+	public List<Recommendation> getRecommendations() {
+		return recommendations;
+	}
+
+	public void setRecommendations(List<Recommendation> recommendations) {
+		this.recommendations = recommendations;
+	}
+
+	
 }

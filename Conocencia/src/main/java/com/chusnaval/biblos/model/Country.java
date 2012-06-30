@@ -1,9 +1,13 @@
 package com.chusnaval.biblos.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +18,8 @@ public final class Country {
 	private Long id;
 	private String name;
 	private String code;
-
+	private List<University> universities;
+	
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
@@ -49,4 +54,14 @@ public final class Country {
 		return "Country [id=" + id + ", name=" + name + ", code=" + code + "]";
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "country")
+	public List<University> getUniversities() {
+		return universities;
+	}
+
+	public void setUniversities(List<University> universities) {
+		this.universities = universities;
+	}
+
+	
 }

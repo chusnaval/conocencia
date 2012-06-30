@@ -1,42 +1,160 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-     xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:p="http://primefaces.org/ui">
- <h:head><title>Conocencia 0.1</title></h:head>
- <h:body>
-     <h:form>
-      <table>
-       <tr>
-        <td><h:outputLabel for="id" value="Id : " /></td>
-        <td><p:inputText id="id" value="#{bookMB.id}">
-          <f:converter converterId="javax.faces.Integer"/>
-             <p:ajax event="blur" update="idMsg" />
-         </p:inputText>
-         <p:message id="idMsg" for="id" display="icon"/>
-        </td>
-       </tr>
-       <tr>
-        <td><h:outputLabel for="title" value="Title : " /></td>
-        <td><p:inputText id="title" value="#{bookMB.title}">
-          <f:validateLength minimum="1" />
-          <p:ajax event="blur" update="titleMsg" />
-         </p:inputText>
-         <p:message id="titleMsg" for="title" display="icon"/>
-        </td>
-       </tr>
-       <tr>
-        <td><h:outputLabel for="originalTitle" value="Original Title : " /></td>
-        <td><p:inputText id="originalTitle" value="#{bookMB.originalTitle}">
-         <p:ajax event="blur" update="titleMsg01" />
-         </p:inputText>
-         <p:message id="titleMsg01" for="originalTitle" display="icon"/>
-        </td>
-       </tr>
-          <tr>
-        <td><p:commandButton id="addUser" value="Add" action="#{bookMB.addUser}" ajax="false"/></td>
-        <td><p:commandButton id="reset" value="Reset" action="#{bookMB.reset}" ajax="false"/></td>
-       </tr>
-      </table>
-     </h:form>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="/pages/template.xhtml">
+		<ui:define name="body">
+			<h:form>
+				<div id="searchBox"
+					style="width: 50%; background-color: #118011; color: white;">
+					<h:outputLabel for="textSearch" value="Search: " />
+					<p:selectOneMenu>
+						<f:selectItem itemLabel="Books" />
+					</p:selectOneMenu>
+					<p:inputText id="textSearch" value="#{editionMB.textSearch}" />
+					<p:commandButton id="makeSearch" value="Go"
+						action="#{editionMB.search}" ajax="false" />
+					<p:commandButton id="reset" value="Reset"
+						action="#{editionMB.reset}" ajax="false" />
+				</div>
+
+				<h:panelGroup id="books">
+					<h:outputText value="BOOKS : "></h:outputText>
+					<p:dataTable id="editions" var="edition"
+						value="#{editionMB.editions}">
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Actions" />
+							</f:facet>
+							<p:commandButton id="modif" value="M" action="#{editionMB.modif}"
+								ajax="false" />
+							<p:commandButton id="delete" value="X"
+								action="#{editionMB.delete}" ajax="false" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Title" />
+							</f:facet>
+							<h:outputText value="#{edition.book.title}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Original Title" />
+							</f:facet>
+							<h:outputText value="#{edition.book.originalTitle}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Number" />
+							</f:facet>
+							<h:outputText value="#{edition.number}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Year" />
+							</f:facet>
+							<h:outputText value="#{edition.year}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Buyed" />
+							</f:facet>
+							<h:outputText value="#{edition.buyed}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Author" />
+							</f:facet>
+							<p:dataTable id="writers" var="writer"
+								value="#{edition.book.writers}">
+								<p:column>
+									<h:outputText value="#{writer.name}" />
+								</p:column>
+							</p:dataTable>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Publisher" />
+							</f:facet>
+							<h:outputText value="#{edition.publisher.name}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Recommendations" />
+							</f:facet>
+							<p:dataTable id="recommendations" var="recommendation"
+								value="#{edition.recommendations}">
+								<p:column>
+									<h:outputText value="#{recommendation.university.name}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{recommendation.university.country.code}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{recommendation.course.name}" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{recommendation.text}" />
+								</p:column>
+							</p:dataTable>
+						</p:column>
+					</p:dataTable>
+					<p:commandButton id="newEdition" value="New" onclick="dlg1.show();" />
+
+					<p:dialog id="popup" header="New Edition" widgetVar="dlg1" dynamic="true" resizable="false" width="600" height="600">
+						<p:wizard>
+							<p:tab id="bookEdition" title="Book">
+								<h:outputLabel for="title" value="Title:" style="font-weight:bold; display: block; width:150px;"/>
+								<p:inputText id="title" value="#{editionMB.title}" /><br/>		
+								<h:outputLabel for="title" value="Original Title:" style="font-weight:bold; display: block; width:150px;"/>
+								<p:inputText id="originalTitle"	value="#{editionMB.originalTitle}" /><br/>
+								<h:outputLabel for="title" value="Number:" style="font-weight:bold; display: block; width:150px;"/>
+								<p:inputText id="number" value="#{editionMB.editionNumber}" /><br/>
+								<h:outputLabel for="title" value="Year:" style="font-weight:bold; display: block; width:150px;"/>
+								<p:inputText id="year" value="#{editionMB.year}" /><br/>
+								<h:outputLabel for="title" value="Is Buyed?:" style="font-weight:bold; display: block; width:150px;"/>
+								<p:selectBooleanButton id="buyed" value="#{editionMB.buyed}" 
+											onLabel="Yes" offLabel="No"	onIcon="ui-icon-check" offIcon="ui-icon-close" /><br/>
+							</p:tab>
+							<p:tab id="publisher" title="Publisher">
+								<h:outputLabel for="publisher" value="Publishers:" style="font-weight:bold; display: block; width:150px;"/>
+								<p:selectOneMenu value="#{editionMB.idPublisher}">
+									<f:selectItem itemLabel="Select One" itemValue="" />
+									<f:selectItems value="#{editionMB.publishers}" var="publisher" itemLabel="#{publisher.name}" itemValue="#{publisher.id}"/>
+								</p:selectOneMenu>
+								<br/>							
+							</p:tab>
+							<p:tab id="writers" title="Writers">
+								<h:outputLabel for="writer" value="Writers:" style="font-weight:bold; display: block; width:150px;"/>
+								<p:selectOneMenu>
+									<f:selectItem itemLabel="Writer01" />
+								</p:selectOneMenu>
+								<br/>							
+							</p:tab>
+							<p:tab id="recommendation" title="Recommendations">
+								<h:outputLabel for="university" value="University:" style="font-weight:bold; display: block; width:150px;"/>
+								<p:selectOneMenu>
+									<f:selectItem itemLabel="University01" />
+								</p:selectOneMenu>
+								<br/>	
+								<h:outputLabel for="course" value="Course:" style="font-weight:bold; display: block; width:150px;"/>
+								<p:selectOneMenu>
+									<f:selectItem itemLabel="Course01" />
+								</p:selectOneMenu>
+								<br/>	
+								<h:outputLabel for="text" value="Text:" style="font-weight:bold; display: block; width:150px;"/>
+								<p:inputTextarea rows="6" cols="33" counter="counter" maxlength="200" counterTemplate="{0} characters remaining."/>
+								<br/>
+								<p:commandButton id="saveBook" value="Save" onclick="save();" />						
+							</p:tab>
+						</p:wizard>
+										
+					</p:dialog>
+				</h:panelGroup>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

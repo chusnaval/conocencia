@@ -1,16 +1,17 @@
 package com.chusnaval.biblos.model;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -24,6 +25,7 @@ public final class Book {
 	private String title;
 	private String originalTitle;
 	private List<Writer> writers;
+	private List<Edition> editions;
 
 	@Id
 	@GeneratedValue
@@ -71,4 +73,14 @@ public final class Book {
 		this.writers = writers;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
+	public List<Edition> getEditions() {
+		return editions;
+	}
+
+	public void setEditions(List<Edition> editions) {
+		this.editions = editions;
+	}
+
+	
 }

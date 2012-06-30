@@ -2,26 +2,24 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-
 http://www.springframework.org/schema/tx
-
 http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-
 http://www.springframework.org/schema/context
-
 http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<!-- Book Service Declaration -->
-	<bean id="BookService" class="com.chusnaval.biblos.service.BookService">
-		<property name="bookDAO" ref="BookDAO" />
-	</bean>
+	<context:component-scan base-package="com.chusnaval.biblos" annotation-config="true" />
+	<context:annotation-config /> 
 
-	<!-- Book DAO Declaration -->
+	<!-- DAO Declaration -->
 	<bean id="BookDAO" class="com.chusnaval.biblos.dao.BookDAO">
 		<property name="sessionFactory" ref="SessionFactory" />
 	</bean>
+
+	<bean id="EditionDAO" class="com.chusnaval.biblos.dao.EditionDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+
 
 	<!-- Data Source Declaration -->
 	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"

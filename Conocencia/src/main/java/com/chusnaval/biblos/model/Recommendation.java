@@ -1,17 +1,24 @@
 package com.chusnaval.biblos.model;
 
-import javax.persistence.CascadeType;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "universityrecommendations")
-public class Recommendation {
+public class Recommendation implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5492592229663511423L;
 	private long id;
 	private String text;
 	private Edition edition;
@@ -38,7 +45,8 @@ public class Recommendation {
 		this.text = text;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idEdition", nullable = false)
 	public Edition getEdition() {
 		return edition;
 	}
@@ -47,7 +55,8 @@ public class Recommendation {
 		this.edition = edition;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idUniversity", nullable = false)
 	public University getUniversity() {
 		return university;
 	}
@@ -56,7 +65,8 @@ public class Recommendation {
 		this.university = university;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idCourse", nullable = false)
 	public Course getCourse() {
 		return course;
 	}
