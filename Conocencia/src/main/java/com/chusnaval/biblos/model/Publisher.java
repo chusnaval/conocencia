@@ -1,5 +1,6 @@
 package com.chusnaval.biblos.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,8 +13,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "publishers")
-public final class Publisher {
+public final class Publisher implements Serializable{
 
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1987791022825563507L;
 	private Long id;
 	private String name;
 	private List<Edition> editions;

@@ -1,5 +1,6 @@
 package com.chusnaval.biblos.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -25,7 +26,7 @@ public class Edition {
 	private boolean buyed = false;
 	private Publisher publisher;
 	private Book book;
-	private List<Recommendation> recommendations;
+	private List<Recommendation> recommendations = new ArrayList<Recommendation>();
 
 	@Id
 	@GeneratedValue

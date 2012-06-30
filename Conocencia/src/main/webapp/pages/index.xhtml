@@ -103,24 +103,24 @@
 					</p:dataTable>
 					<p:commandButton id="newEdition" value="New" onclick="dlg1.show();" />
 
-					<p:dialog id="popup" header="New Edition" widgetVar="dlg1" dynamic="true" resizable="false" width="600" height="600">
-						<p:wizard>
+					<p:dialog id="popup" header="New Edition" widgetVar="dlg1" dynamic="true" resizable="false" width="650" height="650">
+						<p:wizard flowListener="#{editionMB.onFlowProcess}">
 							<p:tab id="bookEdition" title="Book">
 								<h:outputLabel for="title" value="Title:" style="font-weight:bold; display: block; width:150px;"/>
-								<p:inputText id="title" value="#{editionMB.title}" /><br/>		
-								<h:outputLabel for="title" value="Original Title:" style="font-weight:bold; display: block; width:150px;"/>
-								<p:inputText id="originalTitle"	value="#{editionMB.originalTitle}" /><br/>
-								<h:outputLabel for="title" value="Number:" style="font-weight:bold; display: block; width:150px;"/>
-								<p:inputText id="number" value="#{editionMB.editionNumber}" /><br/>
-								<h:outputLabel for="title" value="Year:" style="font-weight:bold; display: block; width:150px;"/>
-								<p:inputText id="year" value="#{editionMB.year}" /><br/>
-								<h:outputLabel for="title" value="Is Buyed?:" style="font-weight:bold; display: block; width:150px;"/>
-								<p:selectBooleanButton id="buyed" value="#{editionMB.buyed}" 
+								<p:inputText id="title" value="#{editionMB.book.title}" /><br/>		
+								<h:outputLabel for="originalTitle" value="Original Title:" style="font-weight:bold; display: block; width:150px;"/>
+								<p:inputText id="originalTitle"	value="#{editionMB.book.originalTitle}" /><br/>
+								<h:outputLabel for="number" value="Number:" style="font-weight:bold; display: block; width:150px;"/>
+								<p:inputText id="number" value="#{editionMB.edition.number}" /><br/>
+								<h:outputLabel for="year" value="Year:" style="font-weight:bold; display: block; width:150px;"/>
+								<p:inputText id="year" value="#{editionMB.edition.year}" /><br/>
+								<h:outputLabel for="buyed" value="Is Buyed?:" style="font-weight:bold; display: block; width:150px;"/>
+								<p:selectBooleanButton id="buyed" value="#{editionMB.edition.buyed}" 
 											onLabel="Yes" offLabel="No"	onIcon="ui-icon-check" offIcon="ui-icon-close" /><br/>
 							</p:tab>
-							<p:tab id="publisher" title="Publisher">
+							<p:tab id="publishers" title="Publisher">
 								<h:outputLabel for="publisher" value="Publishers:" style="font-weight:bold; display: block; width:150px;"/>
-								<p:selectOneMenu value="#{editionMB.idPublisher}">
+								<p:selectOneMenu id="publisher" value="#{editionMB.publisher.id}">
 									<f:selectItem itemLabel="Select One" itemValue="" />
 									<f:selectItems value="#{editionMB.publishers}" var="publisher" itemLabel="#{publisher.name}" itemValue="#{publisher.id}"/>
 								</p:selectOneMenu>
@@ -128,26 +128,40 @@
 							</p:tab>
 							<p:tab id="writers" title="Writers">
 								<h:outputLabel for="writer" value="Writers:" style="font-weight:bold; display: block; width:150px;"/>
-								<p:selectOneMenu>
-									<f:selectItem itemLabel="Writer01" />
+								<p:selectOneMenu id="writer" value="#{editionMB.writer.id}">
+									<f:selectItem itemLabel="Select One" itemValue="" />
+									<f:selectItems value="#{editionMB.writers}" var="writer" itemLabel="#{writer.name}" itemValue="#{writer.id}"/>
 								</p:selectOneMenu>
 								<br/>							
 							</p:tab>
 							<p:tab id="recommendation" title="Recommendations">
 								<h:outputLabel for="university" value="University:" style="font-weight:bold; display: block; width:150px;"/>
-								<p:selectOneMenu>
-									<f:selectItem itemLabel="University01" />
+								<p:selectOneMenu id="university" value="#{editionMB.university.id}">
+									<f:selectItem itemLabel="Select One" itemValue="" />
+									<f:selectItems value="#{editionMB.universities}" var="university" itemLabel="#{university.name}" itemValue="#{university.id}"/>
 								</p:selectOneMenu>
 								<br/>	
 								<h:outputLabel for="course" value="Course:" style="font-weight:bold; display: block; width:150px;"/>
-								<p:selectOneMenu>
-									<f:selectItem itemLabel="Course01" />
+								<p:selectOneMenu id="course" value="#{editionMB.course.id}">
+									<f:selectItem itemLabel="Select One" itemValue="" />
+									<f:selectItems value="#{editionMB.courses}" var="course" itemLabel="#{course.name}" itemValue="#{course.id}"/>
 								</p:selectOneMenu>
 								<br/>	
 								<h:outputLabel for="text" value="Text:" style="font-weight:bold; display: block; width:150px;"/>
 								<p:inputTextarea rows="6" cols="33" counter="counter" maxlength="200" counterTemplate="{0} characters remaining."/>
-								<br/>
-								<p:commandButton id="saveBook" value="Save" onclick="save();" />						
+							</p:tab>
+							<p:tab id="confirmation" title="Confirmation">
+								<h:outputLabel for="title_C" value="Title:" style="font-weight:bold; display: block; width:150px;"/>
+								<h:outputLabel id="title_C" value="#{editionMB.book.title}" /><br/>
+								<h:outputLabel for="originalTitle_C" value="Original Title:" style="font-weight:bold; display: block; width:150px;"/>
+								<h:outputLabel id="originalTitle_C" value="#{editionMB.book.originalTitle}" /><br/>
+								<h:outputLabel for="number_C" value="Number:" style="font-weight:bold; display: block; width:150px;"/>
+								<h:outputLabel id="number_C" value="#{editionMB.edition.number}" /><br/>
+								<h:outputLabel for="year_C" value="Year:" style="font-weight:bold; display: block; width:150px;"/>
+								<h:outputLabel id="year_C" value="#{editionMB.edition.year}" /><br/>
+								<h:outputLabel for="buyed_C" value="Is Buyed?:" style="font-weight:bold; display: block; width:150px;"/>
+								<h:outputLabel id="buyed_C" value="#{editionMB.edition.buyed}" /><br/>
+								<p:commandButton id="saveBook" value="Save" action="#{editionMB.saveBook}" />	
 							</p:tab>
 						</p:wizard>
 										

@@ -1,5 +1,6 @@
 package com.chusnaval.biblos.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -24,8 +25,8 @@ public final class Book {
 	private Long id;
 	private String title;
 	private String originalTitle;
-	private List<Writer> writers;
-	private List<Edition> editions;
+	private List<Writer> writers = new ArrayList<Writer>();
+	private List<Edition> editions = new ArrayList<Edition>();
 
 	@Id
 	@GeneratedValue
