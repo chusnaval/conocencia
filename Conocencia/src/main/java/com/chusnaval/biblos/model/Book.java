@@ -1,9 +1,9 @@
 package com.chusnaval.biblos.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,8 +20,12 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "Books")
-public final class Book {
-
+public final class Book implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6309566549713900787L;
 	private Long id;
 	private String title;
 	private String originalTitle;
@@ -63,7 +67,7 @@ public final class Book {
 				+ originalTitle + "]";
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(name = "bookwriters", joinColumns = { @JoinColumn(name = "idBook") }, inverseJoinColumns = { @JoinColumn(name = "idWriter") })
 	@Fetch(FetchMode.JOIN)
 	public List<Writer> getWriters() {

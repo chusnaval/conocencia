@@ -2,7 +2,9 @@ package com.chusnaval.biblos.dao;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Repository;
 
 import com.chusnaval.biblos.model.Book;
@@ -10,40 +12,41 @@ import com.chusnaval.biblos.model.Book;
 @Repository(value = "BookDAO")
 public class BookDAO implements IBookDAO {
 
-	private SessionFactory sessionFactory;
+	private EntityManager entityManagerFactory;
 
 	public void addBook(Book book) {
-		getSessionFactory().getCurrentSession().save(book);
+		entityManagerFactory.persist(book);
 	}
 
 	public void updateBook(Book book) {
-		getSessionFactory().getCurrentSession().update(book);
+		entityManagerFactory.merge(book);
 	}
 
 	public void deleteBook(Book book) {
-		getSessionFactory().getCurrentSession().delete(book);
+		entityManagerFactory.remove(book);
 	}
 
-	@SuppressWarnings("unchecked")
+	@Override
 	public Book getBookById(long id) {
-		List<Book> list = getSessionFactory().getCurrentSession()
-				.createQuery("from Book where id=?").setParameter(0, id).list();
-		return list.get(0);
+		return (Book) this.entityManagerFactory
+				.createQuery("from Book where id=?").setParameter(0, id)
+				.getSingleResult();
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Book> getBooks() {
-		return getSessionFactory().getCurrentSession().createQuery("from Book")
-				.list();
-
+		return this.entityManagerFactory.createQuery("from Book")
+				.getResultList();
 	}
 
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
+	public EntityManager getEntityManagerFactory() {
+		return entityManagerFactory;
 	}
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	@PersistenceContext
+	public void setEntityManagerFactory(EntityManager entityManagerFactory) {
+		this.entityManagerFactory = entityManagerFactory;
 	}
 
 }

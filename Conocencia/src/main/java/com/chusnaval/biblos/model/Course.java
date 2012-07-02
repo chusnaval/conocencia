@@ -1,27 +1,27 @@
 package com.chusnaval.biblos.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "courses")
-public final class Course {
+public final class Course implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2801809157624646305L;
 	private Long id;
 	private String name;
-	private List<University> universities;
+	private List<UniversityCourse> universityCourses = new ArrayList<UniversityCourse>();
 
 	@Id
 	@GeneratedValue
@@ -48,15 +48,13 @@ public final class Course {
 		return "Book [id=" + id + ", name=" + name + "]";
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "universityCourses", joinColumns = { @JoinColumn(name = "idCourse") }, inverseJoinColumns = { @JoinColumn(name = "idUniversity") })
-	@Fetch(FetchMode.JOIN)
-	public List<University> getUniversities() {
-		return universities;
+	@OneToMany(mappedBy = "course")
+	public List<UniversityCourse> getUniversityCourses() {
+		return universityCourses;
 	}
 
-	public void setUniversities(List<University> universities) {
-		this.universities = universities;
+	public void setUniversityCourses(List<UniversityCourse> universityCourses) {
+		this.universityCourses = universityCourses;
 	}
 
 	

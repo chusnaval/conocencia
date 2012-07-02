@@ -1,41 +1,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-http://www.springframework.org/schema/tx
-http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:component-scan base-package="com.chusnaval.biblos" annotation-config="true" />
-	<context:annotation-config /> 
-
-	<!-- DAO Declaration -->
-	<bean id="BookDAO" class="com.chusnaval.biblos.dao.BookDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
-	</bean>
-
-	<bean id="EditionDAO" class="com.chusnaval.biblos.dao.EditionDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
-	</bean>
-
-	<bean id="PublisherDAO" class="com.chusnaval.biblos.dao.PublisherDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
-	</bean>
-
-	<bean id="WriterDAO" class="com.chusnaval.biblos.dao.WriterDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
-	</bean>
-	
-	<bean id="UniversityDAO" class="com.chusnaval.biblos.dao.UniversityDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
-	</bean>
-
-	<bean id="CourseDAO" class="com.chusnaval.biblos.dao.CourseDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
-	</bean>
-		
 	<!-- Data Source Declaration -->
 	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
@@ -61,6 +37,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 				<value>com.chusnaval.biblos.model.Publisher</value>
 				<value>com.chusnaval.biblos.model.Edition</value>
 				<value>com.chusnaval.biblos.model.University</value>
+				<value>com.chusnaval.biblos.model.UniversityCourse</value>
 				<value>com.chusnaval.biblos.model.Recommendation</value>
 			</list>
 		</property>
@@ -72,14 +49,22 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		</property>
 	</bean>
 
+	<bean class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+		id="transactionManager" p:sessionFactory-ref="SessionFactory" />
+	<bean
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		id="entityManagerFactory" lazy-init="false" p:dataSource-ref="DataSource">
+		<property name="persistenceUnitName" value="testsource" />
+	</bean>
 
 	<!-- Enable the configuration of transactional behavior based on annotations -->
-	<tx:annotation-driven transaction-manager="txManager" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
-	<!-- Transaction Manager is defined -->
-	<bean id="txManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="SessionFactory" />
-	</bean>
+	<!-- Activates annotation-based bean configuration -->
+	<context:annotation-config />
+
+	<!-- needed is for @Configurable -->
+	<context:component-scan base-package="com.chusnaval" />
+	<tx:annotation-driven />
 
 </beans>

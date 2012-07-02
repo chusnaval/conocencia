@@ -1,5 +1,6 @@
 package com.chusnaval.biblos.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,12 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "editions")
-public class Edition {
+public class Edition implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3993036518794412897L;
 	private long id;
 	private int number;
 	private int year;

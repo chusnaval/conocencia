@@ -87,13 +87,13 @@
 							<p:dataTable id="recommendations" var="recommendation"
 								value="#{edition.recommendations}">
 								<p:column>
-									<h:outputText value="#{recommendation.university.name}" />
+									<h:outputText value="#{recommendation.universityCourse.university.name}" />
 								</p:column>
 								<p:column>
-									<h:outputText value="#{recommendation.university.country.code}" />
+									<h:outputText value="#{recommendation.universityCourse.university.country.code}" />
 								</p:column>
 								<p:column>
-									<h:outputText value="#{recommendation.course.name}" />
+									<h:outputText value="#{recommendation.universityCourse.course.name}" />
 								</p:column>
 								<p:column>
 									<h:outputText value="#{recommendation.text}" />
@@ -117,24 +117,18 @@
 								<h:outputLabel for="buyed" value="Is Buyed?:" style="font-weight:bold; display: block; width:150px;"/>
 								<p:selectBooleanButton id="buyed" value="#{editionMB.edition.buyed}" 
 											onLabel="Yes" offLabel="No"	onIcon="ui-icon-check" offIcon="ui-icon-close" /><br/>
-							</p:tab>
-							<p:tab id="publishers" title="Publisher">
 								<h:outputLabel for="publisher" value="Publishers:" style="font-weight:bold; display: block; width:150px;"/>
 								<p:selectOneMenu id="publisher" value="#{editionMB.publisher.id}">
 									<f:selectItem itemLabel="Select One" itemValue="" />
 									<f:selectItems value="#{editionMB.publishers}" var="publisher" itemLabel="#{publisher.name}" itemValue="#{publisher.id}"/>
 								</p:selectOneMenu>
 								<br/>							
-							</p:tab>
-							<p:tab id="writers" title="Writers">
 								<h:outputLabel for="writer" value="Writers:" style="font-weight:bold; display: block; width:150px;"/>
-								<p:selectOneMenu id="writer" value="#{editionMB.writer.id}">
+								<p:selectManyMenu id="writer" value="#{editionMB.selectedWriters}">
 									<f:selectItem itemLabel="Select One" itemValue="" />
 									<f:selectItems value="#{editionMB.writers}" var="writer" itemLabel="#{writer.name}" itemValue="#{writer.id}"/>
-								</p:selectOneMenu>
+								</p:selectManyMenu>
 								<br/>							
-							</p:tab>
-							<p:tab id="recommendation" title="Recommendations">
 								<h:outputLabel for="university" value="University:" style="font-weight:bold; display: block; width:150px;"/>
 								<p:selectOneMenu id="university" value="#{editionMB.university.id}">
 									<f:selectItem itemLabel="Select One" itemValue="" />
@@ -149,18 +143,7 @@
 								<br/>	
 								<h:outputLabel for="text" value="Text:" style="font-weight:bold; display: block; width:150px;"/>
 								<p:inputTextarea rows="6" cols="33" counter="counter" maxlength="200" counterTemplate="{0} characters remaining."/>
-							</p:tab>
-							<p:tab id="confirmation" title="Confirmation">
-								<h:outputLabel for="title_C" value="Title:" style="font-weight:bold; display: block; width:150px;"/>
-								<h:outputLabel id="title_C" value="#{editionMB.book.title}" /><br/>
-								<h:outputLabel for="originalTitle_C" value="Original Title:" style="font-weight:bold; display: block; width:150px;"/>
-								<h:outputLabel id="originalTitle_C" value="#{editionMB.book.originalTitle}" /><br/>
-								<h:outputLabel for="number_C" value="Number:" style="font-weight:bold; display: block; width:150px;"/>
-								<h:outputLabel id="number_C" value="#{editionMB.edition.number}" /><br/>
-								<h:outputLabel for="year_C" value="Year:" style="font-weight:bold; display: block; width:150px;"/>
-								<h:outputLabel id="year_C" value="#{editionMB.edition.year}" /><br/>
-								<h:outputLabel for="buyed_C" value="Is Buyed?:" style="font-weight:bold; display: block; width:150px;"/>
-								<h:outputLabel id="buyed_C" value="#{editionMB.edition.buyed}" /><br/>
+							
 								<p:commandButton id="saveBook" value="Save" action="#{editionMB.saveBook}" />	
 							</p:tab>
 						</p:wizard>

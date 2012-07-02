@@ -1,5 +1,6 @@
 package com.chusnaval.biblos.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,9 +13,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "countries")
-public final class Country {
+public final class Country implements Serializable{
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6495885097940911268L;
 	private Long id;
 	private String name;
 	private String code;

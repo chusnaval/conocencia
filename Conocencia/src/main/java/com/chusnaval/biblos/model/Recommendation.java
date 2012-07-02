@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -22,8 +21,8 @@ public class Recommendation implements Serializable {
 	private long id;
 	private String text;
 	private Edition edition;
-	private University university;
-	private Course course;
+	private UniversityCourse universityCourse;
+
 
 	@Id
 	@GeneratedValue
@@ -45,7 +44,7 @@ public class Recommendation implements Serializable {
 		this.text = text;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "idEdition", nullable = false)
 	public Edition getEdition() {
 		return edition;
@@ -55,24 +54,16 @@ public class Recommendation implements Serializable {
 		this.edition = edition;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idUniversity", nullable = false)
-	public University getUniversity() {
-		return university;
+	@ManyToOne
+	@JoinColumn(name = "idUniversityCourse", nullable = false)
+	public UniversityCourse getUniversityCourse() {
+		return universityCourse;
 	}
 
-	public void setUniversity(University university) {
-		this.university = university;
+	public void setUniversityCourse(UniversityCourse universityCourse) {
+		this.universityCourse = universityCourse;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idCourse", nullable = false)
-	public Course getCourse() {
-		return course;
-	}
 
-	public void setCourse(Course course) {
-		this.course = course;
-	}
 
 }
